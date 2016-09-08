@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from "jquery";
 
 import Table from 'react-bootstrap/lib/Table';
 
@@ -18,6 +19,8 @@ export var ResourceTable = React.createClass({
     },
 
     componentDidMount: function() {
-        alert('!');
+        $.get("http://localhost:8080/resource", function(result) {
+            console.log(JSON.stringify(result));
+        });
     }
 });
