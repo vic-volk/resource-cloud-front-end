@@ -66,7 +66,7 @@ export var ResourceTable = React.createClass({
                     <th>Label</th>
                 </tr>
             </thead>
-            <TableBody serverUrl={"http://localhost:8080/resource"}></TableBody>
+            <TableBody serverUrl={this.props.serverUrl}></TableBody>
         </Table>
     }
 });

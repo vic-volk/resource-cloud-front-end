@@ -14,12 +14,14 @@ var rowStyle = {
 	marginTop:'20px'
 };
 
+var serverUrl = "http://localhost:8080/resource";
+
 class Content extends React.Component {
   render() {
     return <Grid>
   			<Row>
   		    	<Col xs={4} md={4}>
-					<ButtonPanel>Panel</ButtonPanel>
+					<ButtonPanel serverUrl={serverUrl}>Panel</ButtonPanel>
 		  		</Col>
       			<Col xs={8} md={8}>
 					<InputGroup>
@@ -30,7 +32,7 @@ class Content extends React.Component {
 	  		</Row>
 			<Row></Row>
 		    <Row style={rowStyle}>
-				<ResourceTable/>
+				<ResourceTable serverUrl={serverUrl}/>
 			</Row>
 	  	   </Grid>;
   }

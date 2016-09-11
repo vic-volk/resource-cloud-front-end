@@ -1,79 +1,138 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from "jquery";
 
 import Popover from 'react-bootstrap/lib/Popover';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 
 export var ModalButton = React.createClass({
-  getInitialState() {
-    return { showModal: false };
-  },
 
-  close() {
-    this.setState({ showModal: false });
-  },
+    getInitialState() {
+        return {
+            showModal: false,
+            data: {}
+        };
+    },
 
-  open() {
-    this.setState({ showModal: true });
-  },
+    close() {
+      this.setState({ showModal: false });
+    },
 
-  render() {
-    const popover = (
-        <Popover id="modal-popover" title="popover">
-          very popover. such engagement
-        </Popover>
-    );
-    const tooltip = (
-        <Tooltip id="modal-tooltip">
-          wow.
-        </Tooltip>
-    );
+    open() {
+        this.setState({ showModal: true });
+    },
 
-    return (
-        <div>
+    handleNameChange: function(event) {
+        var data = this.state.data;
+        data.name = event.target.value;
+        this.setState(data);
+    },
 
-          <Button
-              bsStyle="primary"
-              onClick={this.open}
-              >
-            Добавить ресурс
-          </Button>
+    handleUrlChange: function(event) {
+        var data = this.state.data;
+        data.url = event.target.value;
+        this.setState(data);
+    },
 
-          <Modal show={this.state.showModal} onHide={this.close}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4>Text in a modal</h4>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+    handleLabelChange: function(event) {
+        var data = this.state.data;
+        data.label = event.target.value;
+        this.setState(data);
+    },
 
-              <h4>Popover in a modal</h4>
-              <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
+    handleDescriptionChange: function(event) {
+        var data = this.state.data;
+        data.description = event.target.value;
+        this.setState(data);
+    },
 
-              <h4>Tooltips in a modal</h4>
-              <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
+    getValidationState: function() {
 
-              <hr />
+    },
 
-              <h4>Overflowing text to show scroll behavior</h4>
-              <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-              <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-              <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-              <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-              <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-              <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.close}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-        </div>
-    );
-  }
+    postResource: function() {
+        var data = this.state.data;
+        $.ajax({
+            type: "POST",
+            url: this.props.serverUrl,
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function() {
+                alert('success!');
+            }
+        })
+    },
+
+    render() {
+        return (
+            <div>
+
+                <Button
+                    bsStyle="primary"
+                    onClick={this.open}
+                    >
+                  Добавить ресурс
+                </Button>
+
+                <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Add resource</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form>
+                            <FormGroup
+                                controlId="formBasicText"
+                                validationState={this.getValidationState()}
+                                >
+                                <ControlLabel>Resource name</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="Enter name"
+                                    onChange={this.handleNameChange}
+                                    />
+                                <FormControl.Feedback />
+                                <ControlLabel>Resource link</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="Enter link"
+                                    onChange={this.handleUrlChange}
+                                    />
+                                <FormControl.Feedback />
+                                <ControlLabel>Resource labels</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="Enter labels"
+                                    onChange={this.handleLabelChange}
+                                    />
+                                <FormControl.Feedback />
+                                <ControlLabel>Resource description</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="Enter description"
+                                    onChange={this.handleDescriptionChange}
+                                    />
+                                <FormControl.Feedback />
+                            </FormGroup>
+                        </form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button onClick={this.close}>Close</Button>
+                      <Button bsStyle="primary" onClick={this.postResource}>Add</Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+        );
+    }
 });

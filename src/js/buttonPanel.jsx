@@ -9,7 +9,7 @@ export class ButtonPanel extends React.Component {
   render() {
     return (
       <ButtonToolbar>
-    	<ModalButton>Добавить ресурс</ModalButton>
+    	<ModalButton serverUrl={this.props.serverUrl}>Добавить ресурс</ModalButton>
     	<Button bsStyle="warning">Удалить ресурс</Button>
       </ButtonToolbar>
     );
