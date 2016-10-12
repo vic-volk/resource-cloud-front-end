@@ -9,6 +9,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 
 import { ButtonPanel } from './buttonPanel.jsx';
 import { ResourceTable } from './resourceTable.jsx';
+import { BookList } from './bookList.jsx';
 
 var rowStyle = {
 	marginTop:'20px'
@@ -32,7 +33,7 @@ class Content extends React.Component {
 	  		</Row>
 			<Row></Row>
 		    <Row style={rowStyle}>
-				<ResourceTable serverUrl={serverUrl}/>
+				<BookList/>
 			</Row>
 	  	   </Grid>;
   }

@@ -13,7 +13,7 @@ export class CustomNavbar extends React.Component {
     return <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Resource cloud</a>
+        <a href="#">Book store</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
