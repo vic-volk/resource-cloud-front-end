@@ -7,7 +7,11 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
- 
+import Button from 'react-bootstrap/lib/Button';
+import Overlay from 'react-bootstrap/lib/Overlay';
+
+import { ChatWithAgentButton } from './chatWithAgentButton.jsx';
+
 export class CustomNavbar extends React.Component {
   render() {
     return <Navbar>
@@ -31,7 +35,9 @@ export class CustomNavbar extends React.Component {
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={1} href="#">Link Right</NavItem>
-        <NavItem eventKey={2} href="#">Link Right</NavItem>
+        <NavItem eventKey={2} href="#">
+          <ChatWithAgentButton/>
+        </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
