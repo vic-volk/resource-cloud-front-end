@@ -21,9 +21,6 @@ class Content extends React.Component {
   render() {
     return <Grid>
   			<Row>
-  		    	<Col xs={4} md={4}>
-					<ButtonPanel serverUrl={serverUrl}>Panel</ButtonPanel>
-		  		</Col>
       			<Col xs={8} md={8}>
 					<InputGroup>
 						<InputGroup.Addon>Поиск</InputGroup.Addon>

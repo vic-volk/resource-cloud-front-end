@@ -17,11 +17,11 @@ export const ChatWindow = React.createClass({
                 style={{
                   position: 'absolute',
                   width: '200%',
-                  right: '-220%',
+                  right: '2%',
                   top: 100,
                   backgroundColor: '#fff',
-                  boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
-                  border: '1px solid #CCC',
+                  boxShadow: '0 15px 10px 10px rgba(0, 0, 0, 0.5)',
+                  border: '1px solid rgb(18, 185, 54)',
                   borderRadius: 3,
                   padding: 10,
                   margin: 5,
@@ -29,19 +29,19 @@ export const ChatWindow = React.createClass({
         }}
             >
                 <div style={{
-                                border: '1px solid rgb(18, 185, 54);',
-                                backgroundImage: '-webkit-linear-gradient(top, rgb(46, 142, 71) 0px, rgb(5, 93, 15) 100%);',
+                                border: '1px solid rgb(18, 185, 54)',
+                                backgroundImage: '-webkit-linear-gradient(top,#5cb85c 0,#3c763d 100%)',
+                                color: 'white',
                                 padding: 5
                             }}>Chat window
                 </div>
                 <div style={{
-                                border: '1px solid #CCC',
+                                border: '1px solid rgb(18, 185, 54)',
                                 height: 200
                             }}>
-                    Text window
                 </div>
                 <FormGroup controlId="formControlsTextarea">
-                    <ControlLabel>Input Box</ControlLabel>
+                    <ControlLabel></ControlLabel>
                     <FormControl componentClass="textarea" placeholder="textarea"/>
                 </FormGroup>
             </div>
