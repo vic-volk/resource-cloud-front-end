@@ -11,6 +11,10 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
 export const ChatWindow = React.createClass({
+    enterMessageToWindow (event) {
+        console.log("entered");
+    },
+
     render() {
         return (
             <div
@@ -42,7 +46,7 @@ export const ChatWindow = React.createClass({
                 </div>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel></ControlLabel>
-                    <FormControl componentClass="textarea" placeholder="textarea"/>
+                    <FormControl componentClass="textarea" placeholder="" onKeyDown={this.enterMessageToWindow()}/>
                 </FormGroup>
             </div>
         );
