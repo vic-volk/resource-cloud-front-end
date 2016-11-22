@@ -11,8 +11,18 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
 export const ChatWindow = React.createClass({
+
     enterMessageToWindow (event) {
-        console.log("entered");
+        if (event.keyCode == 13) {
+            console.log("entered");
+            console.log(event);
+            //вывести в текстбокс
+            //отправить запрос на сервак
+        }
+    },
+
+    showMessage() {
+        return <p>{this.state.message}</p>;
     },
 
     render() {
@@ -37,16 +47,19 @@ export const ChatWindow = React.createClass({
                                 backgroundImage: '-webkit-linear-gradient(top,#5cb85c 0,#3c763d 100%)',
                                 color: 'white',
                                 padding: 5
-                            }}>Chat window
+                            }}><h2>Chat window</h2>
                 </div>
                 <div style={{
                                 border: '1px solid rgb(18, 185, 54)',
                                 height: 200
                             }}>
+                    <h2>{}</h2>
                 </div>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel></ControlLabel>
-                    <FormControl componentClass="textarea" placeholder="" onKeyDown={this.enterMessageToWindow()}/>
+                    <FormControl componentClass="textarea"
+                                 placeholder=""
+                                 onKeyDown={this.enterMessageToWindow}/>
                 </FormGroup>
             </div>
         );
