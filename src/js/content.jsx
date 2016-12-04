@@ -15,7 +15,7 @@ var rowStyle = {
 	marginTop:'20px'
 };
 
-var serverUrl = "http://localhost:8080/resource";
+var serverUrl = "http://localhost:9998/book";
 
 class Content extends React.Component {
   render() {
@@ -30,7 +30,7 @@ class Content extends React.Component {
 	  		</Row>
 			<Row></Row>
 		    <Row style={rowStyle}>
-				<BookList/>
+				<BookList serverUrl="http://localhost:9998/book"/>
 			</Row>
 	  	   </Grid>;
   }

@@ -10,53 +10,43 @@ import Col from 'react-bootstrap/lib/Col';
 import Image from 'react-bootstrap/lib/Image';
 
 export var BookList = React.createClass({
+
+    getInitialState: function() {
+        return { data: [] };
+    },
+
+    componentDidMount: function() {
+        console.log(this.props.serverUrl);
+        $.get(this.props.serverUrl, function(result) {
+            this.setState({data: result.content});
+        }.bind(this));
+    },
+
+    renderBookEntry(name, description, url) {
+        return <ListGroupItem href="#link1">
+            <Grid>
+                <Row>
+                    <Col xs={6} md={2}>
+                        <Image src={url} rounded width="100" height="150"/>
+                    </Col>
+                    <Col xs={6} md={2}>
+                        <h2>{name}</h2>
+                    </Col>
+                    <Col xs={6} md={8}>
+                        <p>{description}</p>
+                    </Col>
+                </Row>
+            </Grid>
+        </ListGroupItem>
+    },
+
     render: function() {
-        return <ListGroup>
-            <ListGroupItem href="#link1">
-                <Grid>
-                    <Row>
-                        <Col xs={6} md={4}>
-                            <Image src="/assets/thumbnail.png" rounded />
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <h2>Test Book 1</h2>
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <p>Description</p>
-                        </Col>
-                    </Row>
-                </Grid>
-            </ListGroupItem>
-            <ListGroupItem href="#link2">
-                <Grid>
-                    <Row>
-                        <Col xs={6} md={4}>
-                            <Image src="/assets/thumbnail.png" rounded />
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <h2>Test Book 2</h2>
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <p>Description</p>
-                        </Col>
-                    </Row>
-                </Grid>
-            </ListGroupItem>
-            <ListGroupItem>
-                <Grid>
-                    <Row>
-                        <Col xs={6} md={4}>
-                            <Image src="/assets/thumbnail.png" rounded />
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <h2>Test Book 3</h2>
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <p>Description</p>
-                        </Col>
-                    </Row>
-                </Grid>
-            </ListGroupItem>
-        </ListGroup>
+        console.log("bookList: entry");
+        var data = this.state.data;
+        var rows = [];
+        for (var i = 0; i < data.length; i++) {
+            rows.push(this.renderBookEntry(data[i].name, data[i].description, data[i].cover));
+        }
+        return <ListGroup>{rows}</ListGroup>
     }
 });
