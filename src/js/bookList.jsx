@@ -17,9 +17,17 @@ export var BookList = React.createClass({
 
     componentDidMount: function() {
         console.log(this.props.serverUrl);
-        $.get(this.props.serverUrl, function(result) {
-            this.setState({data: result.content});
-        }.bind(this));
+        this.initData();
+    },
+
+    initData: function() {
+        if(this.props.bookData == null || this.props.bookData.length == 0) {
+            $.get(this.props.serverUrl, function(result) {
+                this.setState({data: result.content});
+            }.bind(this));
+        } else {
+            this.setState({data: this.props.bookData});
+        }
     },
 
     renderBookEntry(name, description, url) {
