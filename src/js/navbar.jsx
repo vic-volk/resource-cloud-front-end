@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactBootstrap from 'react-bootstrap';
-import ButtonToolbar from 'react-bootstrap';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
-import Button from 'react-bootstrap/lib/Button';
-import Overlay from 'react-bootstrap/lib/Overlay';
 
 import { ChatWithAgentButton } from './chatWithAgentButton.jsx';
+
+var serverUrl = "http://localhost:9998";
 
 export class CustomNavbar extends React.Component {
   render() {
@@ -36,7 +34,7 @@ export class CustomNavbar extends React.Component {
       <Nav pullRight>
         <NavItem eventKey={1} href="#">Link Right</NavItem>
         <NavItem eventKey={2} href="#">
-          <ChatWithAgentButton/>
+          <ChatWithAgentButton serverUrl={serverUrl}/>
         </NavItem>
       </Nav>
     </Navbar.Collapse>

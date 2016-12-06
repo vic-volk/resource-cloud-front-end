@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from "jquery";
 
 import ListGroup from 'react-bootstrap/lib/ListGroup';
@@ -18,6 +17,16 @@ export var BookList = React.createClass({
     componentDidMount: function() {
         console.log(this.props.serverUrl);
         this.initData();
+    },
+
+    componentWillReceiveProps: function(nextProps) {
+        console.log("componentWillReceiveProps");
+        this.setState({data: nextProps.bookData});
+    },
+
+    shouldComponentUpdate: function() {
+        console.log("shouldComponentUpdate");
+        return true;
     },
 
     initData: function() {

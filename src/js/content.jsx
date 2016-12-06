@@ -7,8 +7,6 @@ import Col from 'react-bootstrap/lib/Col';
 import InputGroup from 'react-bootstrap/lib/InputGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
-import {ButtonPanel} from './buttonPanel.jsx';
-import {ResourceTable} from './resourceTable.jsx';
 import {BookList} from './bookList.jsx';
 
 import $ from "jquery";
@@ -17,7 +15,7 @@ var rowStyle = {
     marginTop: '20px'
 };
 
-var serverUrl = "http://localhost:9998/book";
+var serverUrl = "http://localhost:9998";
 
 var Content = React.createClass({
 
@@ -27,7 +25,7 @@ var Content = React.createClass({
 
     requestBooks(term) {
         console.log(term);
-        $.get(serverUrl + '?q=' + term, function (result) {
+        $.get(serverUrl + "/book" + '?q=' + term, function (result) {
             this.setState({data: result.content});
             this.render();
         }.bind(this));
@@ -55,7 +53,7 @@ var Content = React.createClass({
             </Row>
             <Row></Row>
             <Row style={rowStyle}>
-                <BookList serverUrl={serverUrl} bookData={this.state.data}/>
+                <BookList serverUrl={serverUrl + "/book"} bookData={this.state.data}/>
             </Row>
         </Grid>;
     }

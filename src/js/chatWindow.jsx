@@ -1,28 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactBootstrap from 'react-bootstrap';
-
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
 
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 
+import $ from "jquery";
+
 export const ChatWindow = React.createClass({
+
+    getInitialState: function() {
+        return { message: "" };
+    },
+
+    componentDidMount: function() {
+        console.log("componentDidMount");
+        this.setState({serverUrl: this.props.serverUrl});
+    },
 
     enterMessageToWindow (event) {
         if (event.keyCode == 13) {
             console.log("entered");
             console.log(event);
             //вывести в текстбокс
+            this.showMessage(event.target.value);
             //отправить запрос на сервак
+            this.requestAgent(event.target.value);
         }
     },
 
-    showMessage() {
-        return <p>{this.state.message}</p>;
+    showMessage(message) {
+        this.setState({message: message});
+    },
+
+    requestAgent(message) {
+        $.post(this.props.serverUrl + "/agent" + '?question-text=' + message, function (result) {
+            this.setState({data: result.content});
+            this.render();
+        }.bind(this));
     },
 
     render() {
@@ -53,7 +67,7 @@ export const ChatWindow = React.createClass({
                                 border: '1px solid rgb(18, 185, 54)',
                                 height: 200
                             }}>
-                    <h2>{}</h2>
+                    <h2>{this.state.message}</h2>
                 </div>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel></ControlLabel>
