@@ -6,13 +6,46 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 
 import $ from "jquery";
 
+const chatWindowStyle = {
+    position: 'absolute',
+    width: '200%',
+    right: '2%',
+    top: 100,
+    backgroundColor: '#fff',
+    boxShadow: '0 15px 10px 10px rgba(0, 0, 0, 0.5)',
+    border: '1px solid rgb(18, 185, 54)',
+    borderRadius: 3,
+    padding: 10,
+    margin: 5,
+    zIndex: 5
+};
+
+const chatWindowHeaderStyle = {
+    border: '1px solid rgb(18, 185, 54)',
+    backgroundImage: '-webkit-linear-gradient(top,#4cac44 0,#4cae4c 100%)',
+    color: 'white',
+    textAlign: 'center',
+    padding: 1
+};
+
+const chatWindowTextBoxStyle = {
+    border: '1px solid rgb(18, 185, 54)',
+    height: 200
+};
+
+const chatWindowMessageStyle = {
+    color: '#4cac44',
+    paddingLeft: '5px',
+    fontSize: 16
+};
+
 export const ChatWindow = React.createClass({
 
-    getInitialState: function() {
-        return { message: "" };
+    getInitialState: function () {
+        return {message: ""};
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         console.log("componentDidMount");
         this.setState({serverUrl: this.props.serverUrl});
     },
@@ -22,7 +55,8 @@ export const ChatWindow = React.createClass({
             console.log("entered");
             console.log(event);
             //вывести в текстбокс
-            this.showMessage(event.target.value);
+            var message = this.addTimeBoxToMessage(event.target.value);
+            this.showMessage(message);
             //отправить запрос на сервак
             this.requestAgent(event.target.value);
         }
@@ -39,35 +73,20 @@ export const ChatWindow = React.createClass({
         }.bind(this));
     },
 
+    addTimeBoxToMessage(message) {
+        return '[' + new Date().toLocaleString() + ']: ' + message;
+    },
+
     render() {
         return (
-            <div
-                style={{
-                  position: 'absolute',
-                  width: '200%',
-                  right: '2%',
-                  top: 100,
-                  backgroundColor: '#fff',
-                  boxShadow: '0 15px 10px 10px rgba(0, 0, 0, 0.5)',
-                  border: '1px solid rgb(18, 185, 54)',
-                  borderRadius: 3,
-                  padding: 10,
-                  margin: 5,
-                  zIndex: 5
-        }}
-            >
-                <div style={{
-                                border: '1px solid rgb(18, 185, 54)',
-                                backgroundImage: '-webkit-linear-gradient(top,#5cb85c 0,#3c763d 100%)',
-                                color: 'white',
-                                padding: 5
-                            }}><h2>Chat window</h2>
+            <div style={chatWindowStyle}>
+                <div style={chatWindowHeaderStyle}>
+                    <h4>Chat window</h4>
                 </div>
-                <div style={{
-                                border: '1px solid rgb(18, 185, 54)',
-                                height: 200
-                            }}>
-                    <h2>{this.state.message}</h2>
+                <div style={chatWindowTextBoxStyle}>
+                    <h4 style={chatWindowMessageStyle}>
+                        {this.state.message}
+                    </h4>
                 </div>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel></ControlLabel>

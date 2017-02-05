@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "webpack",
-    "start": "webpack-dev-server --progress --colors --content-base dist --port 3030 --hot"
+    "start": "webpack-dev-server --inline --progress --colors --content-base dist --port 3030 --hot & webpack"
   },
   "author": "A Volkov",
   "license": "ISC",
