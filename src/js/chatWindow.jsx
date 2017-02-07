@@ -21,7 +21,6 @@ const chatWindowStyle = {
 };
 
 const chatWindowHeaderStyle = {
-    border: '1px solid rgb(18, 185, 54)',
     backgroundImage: '-webkit-linear-gradient(top,#4cac44 0,#4cae4c 100%)',
     color: 'white',
     textAlign: 'center',
@@ -29,7 +28,7 @@ const chatWindowHeaderStyle = {
 };
 
 const chatWindowTextBoxStyle = {
-    border: '1px solid rgb(18, 185, 54)',
+    border: '1px solid #ccc',
     height: 200
 };
 

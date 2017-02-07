@@ -12,7 +12,7 @@ var serverUrl = "http://localhost:9998";
 
 export class CustomNavbar extends React.Component {
   render() {
-    return <Navbar>
+    return <Navbar inverse>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="#">Book store</a>
