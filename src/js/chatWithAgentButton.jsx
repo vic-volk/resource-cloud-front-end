@@ -17,9 +17,7 @@ export const ChatWithAgentButton = React.createClass({
   render() {
     return (
         <div>
-          <Button ref="target" onClick={this.toggle}>
-            Chat with Agent
-          </Button>
+          <Button ref="target" onClick={this.toggle}>Открыть окно чата</Button>
 
           <Overlay
               show={this.state.show}

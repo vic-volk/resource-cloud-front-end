@@ -15,24 +15,21 @@ export class CustomNavbar extends React.Component {
     return <Navbar inverse>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Book store</a>
+        <a href="#">Поиск по электронной библиотеке виртуальной кафедры</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <NavItem eventKey={1} href="#">Link</NavItem>
-        <NavItem eventKey={2} href="#">Link</NavItem>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        <NavDropdown eventKey={3} title="Меню виртуальной кафедры" id="basic-nav-dropdown">
+          <MenuItem eventKey={3.1}>Личный кабинет</MenuItem>
+          <MenuItem eventKey={3.2}>Список пользователей</MenuItem>
+          <MenuItem eventKey={3.3}>Список сообщений</MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
+          <MenuItem eventKey={3.3}>Завершить сессию</MenuItem>
         </NavDropdown>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">Link Right</NavItem>
         <NavItem eventKey={2} href="#">
           <ChatWithAgentButton serverUrl={serverUrl}/>
         </NavItem>

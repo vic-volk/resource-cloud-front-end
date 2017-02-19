@@ -13,7 +13,7 @@ const chatWindowStyle = {
     top: 100,
     backgroundColor: '#fff',
     boxShadow: '0 15px 10px 10px rgba(0, 0, 0, 0.5)',
-    border: '1px solid rgb(18, 185, 54)',
+    border: '1px solid rgb(0, 0, 0)',
     borderRadius: 3,
     padding: 10,
     margin: 5,
@@ -21,7 +21,7 @@ const chatWindowStyle = {
 };
 
 const chatWindowHeaderStyle = {
-    backgroundImage: '-webkit-linear-gradient(top,#4cac44 0,#4cae4c 100%)',
+    backgroundImage: '-webkit-linear-gradient(top,rgba(10,31,46,1) 0,rgba(9,93,149,1) 100%)',
     color: 'white',
     textAlign: 'center',
     padding: 1
@@ -33,7 +33,7 @@ const chatWindowTextBoxStyle = {
 };
 
 const chatWindowMessageStyle = {
-    color: '#4cac44',
+    color: '#000',
     paddingLeft: '5px',
     fontSize: 16
 };
@@ -80,7 +80,7 @@ export const ChatWindow = React.createClass({
         return (
             <div style={chatWindowStyle}>
                 <div style={chatWindowHeaderStyle}>
-                    <h4>Chat window</h4>
+                    <h4>Окно сообщений</h4>
                 </div>
                 <div style={chatWindowTextBoxStyle}>
                     <h4 style={chatWindowMessageStyle}>
