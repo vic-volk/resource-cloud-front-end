@@ -8,16 +8,14 @@ import MenuItem from 'react-bootstrap/lib/MenuItem';
 
 import { ChatWithAgentButton } from './chatWithAgentButton.jsx';
 
-var serverUrl = "http://localhost:9998";
-
-export class CustomNavbar extends React.Component {
+export var CustomNavbar = React.createClass({
   render() {
     return <Navbar inverse>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="#">Поиск по электронной библиотеке виртуальной кафедры</a>
       </Navbar.Brand>
-      <Navbar.Toggle />
+      <Navbar.Toggle/>
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
@@ -25,18 +23,17 @@ export class CustomNavbar extends React.Component {
           <MenuItem eventKey={3.1}>Личный кабинет</MenuItem>
           <MenuItem eventKey={3.2}>Список пользователей</MenuItem>
           <MenuItem eventKey={3.3}>Список сообщений</MenuItem>
+          <MenuItem eventKey={3.4}>Объявления</MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={3.3}>Завершить сессию</MenuItem>
+          <MenuItem eventKey={3.5}>Завершить сессию</MenuItem>
         </NavDropdown>
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={2} href="#">
-          <ChatWithAgentButton serverUrl={serverUrl}/>
+          <ChatWithAgentButton serverUrl="http://localhost:9998"/>
         </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
   }
-}
- 
-ReactDOM.render(<CustomNavbar/>, document.getElementById('navbar'));
+});

@@ -1,4 +1,3 @@
-import CustomNavbar from './navbar.jsx';
 import Content from './content.jsx';
 import Resource from './model/resource';
 

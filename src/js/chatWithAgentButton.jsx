@@ -5,6 +5,15 @@ import Overlay from 'react-bootstrap/lib/Overlay';
 
 import { ChatWindow } from './chatWindow.jsx';
 
+const chatButtonStyle = {
+    backgroundColor: '#000',
+    backgroundImage: 'linear-gradient(to bottom,#3c3c3c 0,#222 100%)',
+    color: 'white',
+    textAlign: 'center',
+    textDecoration: 'none',
+    border: '#fff'
+};
+
 export const ChatWithAgentButton = React.createClass({
   getInitialState() {
     return { show: false };
@@ -17,7 +26,7 @@ export const ChatWithAgentButton = React.createClass({
   render() {
     return (
         <div>
-          <Button ref="target" onClick={this.toggle}>Открыть окно чата</Button>
+          <Button ref="target" onClick={this.toggle} style={chatButtonStyle}>Открыть окно чата</Button>
 
           <Overlay
               show={this.state.show}
